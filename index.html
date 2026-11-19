@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meu Caixa</title>
+<meta name="theme-color" content="#0F5C4A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meu Caixa">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDF0EA;--sf:#FBFCFA;--ink:#16231D;--mu:#66756D;--ln:#D8DFD6;--ac:#0F5C4A;--on:#fff;--in:#1B8A56;--out:#C4413A;--wa:#B7862A;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1613;--sf:#18221D;--ink:#E7EEE9;--mu:#8FA097;--ln:#26332C;--ac:#2F9E7E;--on:#04201A;--in:#4CC98A;--out:#EF7A72;--wa:#E0B055}}
+:root[data-theme="dark"]{--bg:#0F1613;--sf:#18221D;--ink:#E7EEE9;--mu:#8FA097;--ln:#26332C;--ac:#2F9E7E;--on:#04201A;--in:#4CC98A;--out:#EF7A72;--wa:#E0B055}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.4 Manrope,system-ui,sans-serif;font-variant-numeric:tabular-nums;padding-bottom:84px}
+main{max-width:560px;margin:0 auto;padding:0 14px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:10px 14px;max-width:560px;margin:0 auto}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.mon{display:flex;align-items:center;gap:6px;font-weight:800;font-size:17px}
+.mon button{background:var(--sf);border:1px solid var(--ln);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:16px}
+button{font:inherit;cursor:pointer}
+.sm{background:var(--sf);border:1px solid var(--ln);color:var(--ink);border-radius:20px;padding:7px 12px;font-weight:600;font-size:13px}
+.hero{background:var(--ac);color:var(--on);border-radius:22px;padding:20px;margin-top:6px}
+.hero small{opacity:.8}.hero .big{font-size:36px;font-weight:800;letter-spacing:-.02em;margin:2px 0 8px}
+.hero .pj{font-size:13px;opacity:.9}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.box,.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:13px 14px}
+.box small{color:var(--mu);display:block}.box b{font-size:19px}
+.card{margin-top:12px}.card h2{font-size:15px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+.r,.in{color:var(--in)}.d,.out{color:var(--out)}
+.bar{height:8px;background:var(--ln);border-radius:5px;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;background:var(--ac);border-radius:5px}
+.cr{margin-bottom:11px}.cr div{display:flex;justify-content:space-between;font-size:14px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--ln)}
+.row:first-of-type{border-top:0}.rm{min-width:0}.rm b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rm small{color:var(--mu)}
+.rr{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px;font-weight:700;white-space:nowrap}
+.chip{border:1px solid var(--ln);background:transparent;color:var(--wa);border-radius:10px;font-size:11px;padding:2px 8px;font-weight:600}.chip.ok{color:var(--mu)}
+.day{color:var(--mu);font-size:12px;font-weight:600;margin:14px 2px 2px}
+.chips{display:flex;gap:6px;overflow-x:auto;margin:6px 0}
+.chips .sm.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--ln);border-radius:10px;padding:10px;width:100%}
+label{display:block;font-size:13px;color:var(--mu);font-weight:600;margin-top:10px}label input,label select{margin-top:4px;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ck{display:flex;gap:8px;align-items:center;color:var(--ink)}.ck input{width:auto}
+.seg{display:flex;background:var(--bg);border-radius:12px;padding:3px;margin-top:6px}.seg label{flex:1;margin:0;text-align:center}.seg input{display:none}.seg span{display:block;padding:9px;border-radius:10px;color:var(--mu);font-weight:700}.seg input:checked+span{background:var(--sf);color:var(--ink);box-shadow:0 0 0 1px var(--ln)}
+.btn{background:var(--ac);color:var(--on);border:0;border-radius:12px;padding:13px;font-weight:800;flex:1}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ln);flex:0 0 auto}.btn.danger{color:var(--out)}
+.btns{display:flex;gap:8px;margin-top:16px}
+#sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:30}#sheet.on{display:flex}
+.cs{background:var(--sf);width:100%;max-width:560px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:90%;overflow:auto}.cs h3{margin:0 0 4px;font-size:18px}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:20}
+nav button{background:none;border:0;color:var(--mu);font-size:11px;font-weight:600;padding:4px 6px;flex:1;display:flex;flex-direction:column;align-items:center;gap:1px}nav button span{font-size:19px}nav button.on{color:var(--ac)}
+nav .fab{flex:0 0 54px;height:54px;border-radius:50%;background:var(--ac);color:var(--on);font-size:28px;font-weight:400;margin-top:-22px;box-shadow:0 4px 14px rgba(0,0,0,.25);justify-content:center}
+.empty{color:var(--mu);text-align:center;padding:18px 6px}
+textarea{width:100%;height:90px;font:12px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--ln);border-radius:10px;padding:8px}
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:20px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;z-index:40;pointer-events:none}#toast.on{opacity:1}
+.bud{display:flex;gap:8px;align-items:center}.bud input{width:110px;text-align:right}
+</style>
+</head>
+<body>
+<header><div class="mon" id="mon"></div><button class="sm" id="inst" data-a="install" hidden>Instalar no celular</button></header>
+<main id="app"></main>
+<nav>
+<button data-a="tab" data-id="home"><span>◐</span>Início</button>
+<button data-a="tab" data-id="tx"><span>≡</span>Lançamentos</button>
+<button class="fab" data-a="add" aria-label="Novo lançamento">+</button>
+<button data-a="tab" data-id="bud"><span>◔</span>Orçamento</button>
+<button data-a="tab" data-id="goal"><span>★</span>Metas</button>
+<button data-a="tab" data-id="more"><span>⋯</span>Mais</button>
+</nav>
+<div id="sheet" data-a="close"></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=x=>parseFloat(String(x).replace(",","."));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const CD=['Moradia','Alimentação','Transporte','Saúde','Lazer','Educação','Contas','Compras','Assinaturas','Dívidas','Reserva','Outros'];
+const CR=['Salário','Freelance','Investimentos','Outros'];
+const MF=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const cats=t=>t==='r'?CR:CD;
+const ym=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+const td=()=>{const d=new Date();return ym(d)+'-'+String(d.getDate()).padStart(2,'0')};
+const shiftM=(m,k)=>{const[y,mo]=m.split('-').map(Number);return ym(new Date(y,mo-1+k,1))};
+const addM=(ds,k)=>{const[y,m,d]=ds.split('-').map(Number);const l=new Date(y,m+k,0).getDate();const x=new Date(y,m-1+k,Math.min(d,l));return ym(x)+'-'+String(x.getDate()).padStart(2,'0')};
+const sum=(a,f)=>a.reduce((s,x)=>s+f(x),0);
+const sgn=t=>t.type==='r'?t.amount:-t.amount;
+function load(){try{const j=JSON.parse(localStorage.getItem('meucaixa1'));if(j&&j.tx)return j}catch(e){}return{acc:[{id:'a1',name:'Carteira',ini:0}],tx:[],bud:{},goals:[],theme:'auto'}}
+let S=load(),tab='home',M=ym(new Date()),flt='all',q='',dp=null,rst=false;
+let cloud=null;
+function save(){try{localStorage.setItem('meucaixa1',JSON.stringify(S))}catch(e){}if(cloud)cloud.set({json:JSON.stringify(S),t:Date.now()}).catch(()=>toast('Não consegui salvar na nuvem'))}
+(async function(){try{const[u,db]=await Promise.all([claude.use('user'),claude.use('db')]);if(!u||!db)return;const id=await u.id();if(!id)return;const r=db.doc('data/users/'+id+'/state'),snap=await r.get();
+ if(snap.exists){const j=JSON.parse(snap.data().json);if(j&&j.tx){S=j;try{localStorage.setItem('meucaixa1',JSON.stringify(S))}catch(e){}}}
+ cloud=r;if(!snap.exists)save();render()}catch(e){}})();
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+const accName=id=>(S.acc.find(a=>a.id===id)||{name:'—'}).name;
+const bal=a=>a.ini+sum(S.tx.filter(t=>t.acc===a.id&&t.paid),sgn);
+const opts=(l,s)=>l.map(c=>`<option ${c===s?'selected':''}>${esc(c)}</option>`).join('');
+const dfmt=d=>{const[y,m,dd]=d.split('-');return dd+'/'+m+'/'+y};
+
+const row=t=>`<div class="row" data-a="edit" data-id="${t.id}"><div class="rm"><b>${esc(t.desc)}</b><small>${esc(t.cat)} · ${esc(accName(t.acc))} · ${dfmt(t.date).slice(0,5)}</small></div><div class="rr"><span class="${t.type}">${t.type==='r'?'+':'−'} ${fmt(t.amount)}</span><button class="chip ${t.paid?'ok':''}" data-a="tog" data-id="${t.id}">${t.paid?(t.type==='r'?'recebido':'pago'):(t.date<td()?'atrasado':'pendente')}</button></div></div>`;
+
+function home(){
+ const tm=S.tx.filter(t=>t.date.slice(0,7)===M),rec=sum(tm.filter(t=>t.type==='r'),t=>t.amount),des=sum(tm.filter(t=>t.type==='d'),t=>t.amount);
+ const total=sum(S.acc,bal),pend=S.tx.filter(t=>!t.paid&&t.date.slice(0,7)<=M),pj=total+sum(pend,sgn);
+ const pd=sum(tm.filter(t=>!t.paid&&t.type==='d'),t=>t.amount);
+ // fluxo 6 meses
+ const ms=[...Array(6)].map((_,i)=>shiftM(M,i-5)),data=ms.map(m=>{const x=S.tx.filter(t=>t.date.slice(0,7)===m);return[sum(x.filter(t=>t.type==='r'),t=>t.amount),sum(x.filter(t=>t.type==='d'),t=>t.amount)]});
+ const mx=Math.max(1,...data.flat());
+ const bars=data.map((v,i)=>{const x=i*50+8,h1=v[0]/mx*80,h2=v[1]/mx*80;return`<rect x="${x}" y="${90-h1}" width="16" height="${h1}" rx="3" fill="var(--in)"/><rect x="${x+18}" y="${90-h2}" width="16" height="${h2}" rx="3" fill="var(--out)"/><text x="${x+17}" y="106" text-anchor="middle" font-size="10" fill="var(--mu)">${MF[+ms[i].slice(5)-1].slice(0,3)}</text>`}).join('');
+ const bc={};tm.filter(t=>t.type==='d').forEach(t=>bc[t.cat]=(bc[t.cat]||0)+t.amount);
+ const bl=Object.entries(bc).sort((a,b)=>b[1]-a[1]);
+ const up=S.tx.filter(t=>t.date.slice(0,7)===M&&!t.paid).sort((a,b)=>a.date.localeCompare(b.date));let ul='',ld='';up.forEach(t=>{if(t.date!==ld){ld=t.date;ul+=`<div class="day">${dfmt(t.date)}</div>`}ul+=row(t)});
+ return`<div class="hero"><small>Saldo em caixa</small><div class="big">${fmt(total)}</div><div class="pj">Projeção até o fim do mês: <b>${fmt(pj)}</b></div></div>
+<div class="btns" style="margin-top:10px"><button class="btn ${S.plan?'ghost':''}" style="flex:1" data-a="quiz">${S.plan?'Refazer meu plano':'Montar meu plano'}</button><button class="btn ghost" style="flex:1" data-a="scan">Escanear nota</button></div>
+<div class="grid"><div class="box"><small>Receitas do mês</small><b class="in">${fmt(rec)}</b></div><div class="box"><small>Despesas do mês</small><b class="out">${fmt(des)}</b></div><div class="box"><small>Resultado</small><b class="${rec-des>=0?'in':'out'}">${fmt(rec-des)}</b></div><div class="box"><small>A pagar no mês</small><b>${fmt(pd)}</b></div></div>
+<div class="card"><h2>Fluxo de caixa <small style="color:var(--mu);font-weight:600"><span class="in">■</span> entra <span class="out">■</span> sai</small></h2><svg viewBox="0 0 300 112" width="100%">${bars}</svg></div>
+<div class="card"><h2>Gastos por categoria</h2>${bl.length?bl.map(([c,v])=>`<div class="cr"><div><span>${esc(c)}</span><b>${fmt(v)}</b></div><div class="bar"><i style="width:${v/des*100}%"></i></div></div>`).join(''):'<div class="empty">Sem despesas neste mês. Toque em + para lançar.</div>'}</div>
+<div class="card"><h2>Contas <button class="sm" data-a="newacc">Nova conta</button></h2>${S.acc.map(a=>`<div class="row" data-a="editacc" data-id="${a.id}"><div class="rm"><b>${esc(a.name)}</b></div><div class="rr ${bal(a)<0?'out':''}">${fmt(bal(a))}</div></div>`).join('')}</div>
+<div class="card"><h2>Cronograma do mês <small style="color:var(--mu);font-weight:600">falta pagar ou receber</small></h2>${ul||`<div class="empty">${S.plan?'Tudo em dia neste mês.':'Responda o questionário em Montar meu plano e o cronograma aparece aqui.'}</div>`}</div>`}
+
+function txPage(){return`<div class="card" style="margin-top:6px"><button class="btn" style="width:100%;margin-bottom:8px" data-a="scan">Escanear nota ou colar texto</button><input id="q" placeholder="Buscar descrição ou categoria" value="${esc(q)}"><div class="chips">${[['all','Todos'],['d','Despesas'],['r','Receitas'],['p','Pendentes']].map(([k,l])=>`<button class="sm ${flt===k?'on':''}" data-a="flt" data-id="${k}">${l}</button>`).join('')}</div></div><div id="list"></div>`}
+function renderList(){
+ let l=S.tx.filter(t=>t.date.slice(0,7)===M);
+ if(flt==='d'||flt==='r')l=l.filter(t=>t.type===flt);if(flt==='p')l=l.filter(t=>!t.paid);
+ if(q)l=l.filter(t=>(t.desc+t.cat).toLowerCase().includes(q.toLowerCase()));
+ l.sort((a,b)=>b.date.localeCompare(a.date));
+ let h='',last='';l.forEach(t=>{if(t.date!==last){last=t.date;h+=`<div class="day">${dfmt(t.date)}</div>`}h+=row(t)});
+ $('#list').innerHTML=l.length?`<div class="card" style="margin-top:0">${h}</div>`:'<div class="empty">Nenhum lançamento neste filtro.</div>'}
+
+function budPage(){
+ const tm=S.tx.filter(t=>t.date.slice(0,7)===M&&t.type==='d'),lim=sum(CD,c=>+S.bud[c]||0),sp=sum(tm,t=>t.amount);
+ return`<div class="card" style="margin-top:6px"><h2>Limite total <b>${fmt(lim)}</b></h2><div class="cr"><div><span>Gasto no mês</span><b class="${lim&&sp>lim?'out':''}">${fmt(sp)}</b></div><div class="bar"><i style="width:${lim?Math.min(100,sp/lim*100):0}%;background:${sp>lim&&lim?'var(--out)':'var(--ac)'}"></i></div></div></div>
+<div class="card"><h2>Limite por categoria</h2>${CD.map(c=>{const l=+S.bud[c]||0,s=sum(tm.filter(t=>t.cat===c),t=>t.amount),p=l?s/l:0;return`<div class="cr"><div class="bud"><span style="flex:1">${c}<br><small style="color:var(--mu)">${fmt(s)} gastos</small></span><input type="text" inputmode="decimal" placeholder="Limite" value="${l||''}" data-bud="${c}"></div><div class="bar"><i style="width:${Math.min(100,p*100)}%;background:${p>1?'var(--out)':p>.8?'var(--wa)':'var(--ac)'}"></i></div></div>`}).join('')}</div>`}
+
+function goalPage(){return`<div class="card" style="margin-top:6px"><h2>Metas e reservas <button class="sm" data-a="newgoal">Nova meta</button></h2>${S.goals.length?S.goals.map(g=>{const p=Math.min(100,g.saved/g.target*100);return`<div class="cr"><div><b>${esc(g.name)}</b><span>${p.toFixed(0)}%</span></div><div class="bar"><i style="width:${p}%"></i></div><div style="color:var(--mu);font-size:13px;margin:4px 0">${fmt(g.saved)} de ${fmt(g.target)}</div><div class="bud"><input type="text" inputmode="decimal" placeholder="Valor a guardar" id="dep_${g.id}" style="flex:1"><button class="sm" data-a="dep" data-id="${g.id}">Guardar</button><button class="sm" data-a="delgoal" data-id="${g.id}">Excluir</button></div></div>`}).join(''):'<div class="empty">Crie metas como reserva de emergência, viagem ou carro.</div>'}</div>`}
+
+function morePage(){return`<div class="card" style="margin-top:6px"><h2>Aparência</h2><div class="chips">${[['auto','Automático'],['light','Claro'],['dark','Escuro']].map(([k,l])=>`<button class="sm ${S.theme===k?'on':''}" data-a="theme" data-id="${k}">${l}</button>`).join('')}</div></div>
+<div class="card"><h2>Meu plano</h2><p style="margin:0 0 10px;color:var(--mu)">Responda algumas perguntas e o app monta seu cronograma de contas, orçamento e reserva.</p><button class="btn" style="width:100%" data-a="quiz">${S.plan?'Refazer questionário':'Montar meu plano'}</button></div>
+<div class="card"><h2>Instalar no celular</h2><p style="margin:0 0 10px;color:var(--mu)">Abra o app na tela inicial como qualquer outro aplicativo.</p><button class="btn" style="width:100%" data-a="install">Instalar no celular</button></div>
+<div class="card"><h2>Backup dos dados</h2><p style="margin:0 0 8px;color:var(--mu);font-size:13px">${cloud?'Seus dados estão salvos na sua conta do Claude e aparecem em qualquer aparelho em que você abrir o app logado.':'Seus dados estão salvos só neste aparelho.'} Copie o backup de vez em quando para garantir.</p><textarea id="bk" readonly>${esc(JSON.stringify(S))}</textarea><div class="btns"><button class="btn" data-a="copy">Copiar backup</button></div><label>Restaurar: cole o backup aqui<textarea id="rs" placeholder="Cole aqui"></textarea></label><div class="btns"><button class="btn ghost" data-a="imp">Restaurar dados</button></div></div>
+<div class="card"><h2>Apagar tudo</h2><button class="btn ghost danger" data-a="reset">${rst?'Toque de novo para confirmar':'Apagar todos os dados'}</button></div>`}
+
+function render(){
+ $('#mon').innerHTML=['home','tx','bud'].includes(tab)?`<button data-a="prev">‹</button>${MF[+M.slice(5)-1]} ${M.slice(0,4)}<button data-a="next">›</button>`:{goal:'Metas',more:'Mais'}[tab];
+ $('#app').innerHTML={home,tx:txPage,bud:budPage,goal:goalPage,more:morePage}[tab]();
+ if(tab==='tx')renderList();
+ document.querySelectorAll('nav button[data-id]').forEach(b=>b.classList.toggle('on',b.dataset.id===tab));
+ const st=matchMedia('(display-mode: standalone)').matches||navigator.standalone;$('#inst').hidden=!!st;
+ const th=S.theme;th==='auto'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',th)}
+
+function sheet(h){$('#sheet').innerHTML='<div class="cs">'+h+'</div>';$('#sheet').classList.add('on')}
+const close=()=>$('#sheet').classList.remove('on');
+
+function form(t){const n=!t;t=t||{type:'d',amount:'',desc:'',cat:'',acc:S.acc[0].id,date:td(),paid:true};
+return`<h3>${n?'Novo lançamento':'Editar lançamento'}</h3>
+<div class="seg"><label><input type="radio" name="type" value="d" ${t.type==='d'?'checked':''}><span>Despesa</span></label><label><input type="radio" name="type" value="r" ${t.type==='r'?'checked':''}><span>Receita</span></label></div>
+<label>Valor<input id="f_amt" type="text" inputmode="decimal" value="${t.amount}" placeholder="0,00"></label>
+<label>Descrição<input id="f_desc" value="${esc(t.desc)}" placeholder="Ex.: mercado, aluguel"></label>
+<div class="two"><label>Categoria<select id="f_cat">${opts(cats(t.type),t.cat)}</select></label><label>Conta<select id="f_acc">${S.acc.map(a=>`<option value="${a.id}" ${a.id===t.acc?'selected':''}>${esc(a.name)}</option>`).join('')}</select></label></div>
+<div class="two"><label>Data<input id="f_date" type="date" value="${t.date}"></label>${n?`<label>Repetir<select id="f_rep"><option value="u">Só uma vez</option><option value="p">Parcelado</option><option value="m">Todo mês (12 meses)</option></select></label>`:''}</div>
+${n?`<label id="f_nw" hidden>Número de parcelas (valor acima é de cada parcela)<input id="f_n" type="number" min="2" max="60" value="2"></label>`:''}
+<label class="ck"><input id="f_paid" type="checkbox" ${t.paid?'checked':''}> Já foi pago ou recebido</label>
+<div class="btns">${n?'':`<button class="btn ghost danger" data-a="deltx" data-id="${t.id}">Excluir</button>`}<button class="btn" data-a="savetx" data-id="${n?'':t.id}">Salvar</button></div>`}
+
+function ask(title,fields,act,id,extra=''){sheet(`<h3>${title}</h3>${fields.map(([i,l,v,ty])=>`<label>${l}<input id="${i}" type="text" ${ty==='number'?'inputmode="decimal"':''} value="${esc(v??'')}"></label>`).join('')}<div class="btns">${extra}<button class="btn" data-a="${act}" data-id="${id||''}">Salvar</button></div>`)}
+
+const DEF={dia_sal:'5',dia_mor:'5',dia_cont:'10',dia_as:'15',dia_div:'10',div_n:'1'};
+const QS=[
+['Sua renda','Quanto entra por mês e quando.',[['salario','Salário líquido (R$)'],['dia_sal','Dia em que você recebe'],['extra','Outras rendas por mês (R$)'],['saldo','Saldo que você tem hoje (R$)']]],
+['Moradia','Aluguel ou financiamento. Deixe em branco se não tiver.',[['moradia','Valor mensal (R$)'],['dia_mor','Dia do vencimento']]],
+['Contas fixas','Valor médio de cada uma. Deixe em branco o que não tiver.',[['luz','Luz (R$)'],['agua','Água (R$)'],['net','Internet (R$)'],['cel','Celular (R$)'],['dia_cont','Dia de vencimento das contas']]],
+['Gastos do dia a dia','Quanto você quer gastar, no máximo, por mês.',[['mercado','Mercado e comida (R$)'],['transp','Transporte (R$)'],['lazer','Lazer (R$)'],['saude','Saúde (R$)']]],
+['Assinaturas e dívidas','Streaming, apps, cartão, financiamentos.',[['assin','Assinaturas por mês (R$)'],['dia_as','Dia da cobrança'],['div','Parcela de dívida ou cartão (R$)'],['dia_div','Dia da parcela'],['div_n','Parcelas que faltam']]],
+['Reserva','Pague a si mesmo primeiro.',[['guardar','Quanto guardar por mês (R$)'],['meta','Meta da reserva (R$)']]]];
+let qi=0,SC=[];
+function quizStep(){const[t,h,f]=QS[qi],q=S.quiz||{};sheet(`<p style="color:var(--mu);margin:0">Passo ${qi+1} de ${QS.length}</p><div class="bar"><i style="width:${(qi+1)/QS.length*100}%"></i></div><h3 style="margin-top:12px">${t}</h3><p style="margin:0;color:var(--mu)">${h}</p>${f.map(([k,l])=>`<label>${l}<input id="q_${k}" inputmode="decimal" value="${esc(q[k]??DEF[k]??'')}"></label>`).join('')}<div class="btns">${qi?'<button class="btn ghost" data-a="qback">Voltar</button>':''}<button class="btn" data-a="qnext">${qi===QS.length-1?'Gerar meu cronograma':'Próximo'}</button></div>`)}
+function qsave(){S.quiz=S.quiz||{};QS[qi][2].forEach(([k])=>S.quiz[k]=$('#q_'+k).value.trim());save()}
+function gen(){const q=S.quiz,n=k=>num(q[k])||0,dia=k=>Math.min(28,Math.max(1,parseInt(q[k])||10)),a=S.acc[0].id,t0=td();
+ q.dia_g=String(Math.min(28,dia('dia_sal')+1));
+ S.tx=S.tx.filter(t=>!(t.plan&&!t.paid));
+ if(!S.plan&&q.saldo!==''&&!isNaN(num(q.saldo)))S.acc[0].ini=n('saldo')-sum(S.tx.filter(t=>t.acc===a&&t.paid),sgn);
+ const it=[['r','Salário','Salário','salario','dia_sal',1],['r','Outras rendas','Freelance','extra','dia_sal',1],['d','Moradia','Moradia','moradia','dia_mor',1],['d','Luz','Contas','luz','dia_cont',1],['d','Água','Contas','agua','dia_cont',1],['d','Internet','Contas','net','dia_cont',1],['d','Celular','Contas','cel','dia_cont',1],['d','Assinaturas','Assinaturas','assin','dia_as',1],['d','Parcela da dívida','Dívidas','div','dia_div',0],['d','Guardar na reserva','Reserva','guardar','dia_g',1]];
+ for(const[type,desc,cat,k,dk,rep]of it){const v=n(k);if(!v)continue;const cnt=rep?13:Math.max(1,parseInt(q.div_n)||1);let c=0;
+  for(let i=0;i<13&&c<cnt;i++){const date=shiftM(ym(new Date()),i)+'-'+String(dia(dk)).padStart(2,'0');if(date<t0)continue;c++;S.tx.push({id:uid(),type,amount:v,cat,acc:a,date,paid:false,plan:true,desc:rep?desc:`${desc} (${c}/${cnt})`})}}
+ Object.assign(S.bud,{Moradia:n('moradia'),Contas:n('luz')+n('agua')+n('net')+n('cel'),Assinaturas:n('assin'),'Alimentação':n('mercado'),Transporte:n('transp'),Lazer:n('lazer'),'Saúde':n('saude'),Reserva:n('guardar')});
+ if(n('meta')>0&&!S.goals.some(g=>g.name==='Reserva'))S.goals.push({id:uid(),name:'Reserva',target:n('meta'),saved:0});
+ S.plan={at:t0};save();
+ const renda=n('salario')+n('extra'),fix=n('moradia')+n('luz')+n('agua')+n('net')+n('cel')+n('assin')+n('div'),vr=n('mercado')+n('transp')+n('lazer')+n('saude'),sob=renda-fix-vr-n('guardar');
+ sheet(`<h3>Seu plano está pronto</h3><div class="row"><span>Renda mensal</span><b class="in">${fmt(renda)}</b></div><div class="row"><span>Contas fixas e dívidas</span><b>${fmt(fix)}</b></div><div class="row"><span>Gastos do dia a dia (limite)</span><b>${fmt(vr)}</b></div><div class="row"><span>Guardar na reserva</span><b>${fmt(n('guardar'))}</b></div><div class="row"><span>${sob<0?'Falta por mês':'Sobra livre por mês'}</span><b class="${sob<0?'out':'in'}">${fmt(Math.abs(sob))}</b></div><p style="color:var(--mu)">${sob<0?'Seus gastos planejados passam da sua renda. Reduza os limites ou aumente a renda e refaça o plano.':'Gerei seus vencimentos dos próximos 12 meses no Cronograma do mês, os limites em Orçamento e a meta em Metas.'}</p><div class="btns"><button class="btn" data-a="close">Ver meu cronograma</button></div>`);tab='home';render()}
+const shrink=f=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>{const k=Math.min(1,1400/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);c.toBlob(b=>b?ok(b):no(),'image/jpeg',.8)};i.onerror=no;i.src=URL.createObjectURL(f)});
+function review(l){SC=l;sheet(`<h3>Confira antes de salvar</h3>${l.map((x,i)=>`<div class="card" style="margin-top:8px"><label class="ck"><input type="checkbox" id="r_k${i}" checked> ${x.type==='r'?'Receita':'Despesa'}</label><div class="two"><label>Descrição<input id="r_d${i}" value="${esc(x.desc)}"></label><label>Valor<input id="r_a${i}" inputmode="decimal" value="${x.amount}"></label></div><div class="two"><label>Categoria<select id="r_c${i}">${opts(cats(x.type),x.cat)}</select></label><label>Data<input id="r_t${i}" type="date" value="${x.date}"></label></div></div>`).join('')}<label>Conta<select id="r_acc">${S.acc.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select></label><label class="ck"><input id="r_p" type="checkbox" checked> Já foram pagos ou recebidos</label><div class="btns"><button class="btn" data-a="scansave">Adicionar selecionados</button></div>`)}
+const A={
+ tab:id=>{tab=id;rst=false;render();scrollTo(0,0)},
+ prev:()=>{M=shiftM(M,-1);render()},next:()=>{M=shiftM(M,1);render()},
+ quiz:()=>{qi=0;quizStep()},
+ qnext:()=>{qsave();if(qi<QS.length-1){qi++;quizStep()}else gen()},
+ qback:()=>{qsave();qi--;quizStep()},
+ scan:()=>sheet(`<h3>Escanear nota ou gasto</h3><p style="color:var(--mu);margin:0">Envie fotos de notas, cupons, comprovantes ou prints e, se quiser, escreva um texto. A leitura é feita pelo Claude e você confere antes de salvar.</p><label>Fotos<input id="sc_f" type="file" accept="image/*" multiple></label><label>Texto (ex.: mercado 85,90 ontem; uber 23)<textarea id="sc_t" placeholder="Escreva ou cole aqui"></textarea></label><div class="btns"><button class="btn" data-a="scango">Ler com IA</button></div><div id="sc_s" style="color:var(--mu);margin-top:8px"></div>`),
+ scango:async()=>{const files=[...$('#sc_f').files],txt=$('#sc_t').value.trim(),st=$('#sc_s');if(!files.length&&!txt)return toast('Envie uma foto ou escreva um texto');st.textContent='Lendo, aguarde…';
+  try{const sample=await claude.use('sample');if(!sample)throw{code:'na'};const lim=await sample.limits().catch(()=>({}));if(files.length&&!lim.images)throw{code:'na'};
+   const blobs=files.length?await Promise.all(files.slice(0,lim.images.maxCount||3).map(shrink)):[];
+   const p=`Hoje é ${td()}. Você lê notas fiscais, cupons, comprovantes, prints de aplicativos e textos soltos em português do Brasil. Extraia cada gasto ou ganho. Em uma nota com vários itens, registre UM lançamento com o total e o nome do estabelecimento. Responda SOMENTE um array JSON, sem texto extra: [{"desc":string curta,"amount":número positivo,"date":"AAAA-MM-DD" (hoje se não aparecer),"type":"d" para despesa ou "r" para receita,"cat":uma destas: despesa ${CD.join(', ')}; receita ${CR.join(', ')}}]. Texto do usuário: ${txt||'(nenhum, use as imagens)'}`;
+   const r=await sample.json(p,blobs.length?{images:blobs,modelTier:'quick'}:{modelTier:'quick'});
+   const l=(Array.isArray(r)?r:[]).map(x=>{const type=x.type==='r'?'r':'d',amount=num(x.amount);return{type,amount,desc:String(x.desc||'').slice(0,60),cat:cats(type).includes(x.cat)?x.cat:'Outros',date:/^\d{4}-\d{2}-\d{2}$/.test(x.date)?x.date:td()}}).filter(x=>x.amount>0);
+   if(!l.length){st.textContent='Não encontrei valores. Tente uma foto mais nítida ou escreva o texto.';return}review(l)}
+  catch(e){st.textContent=e&&e.code==='na'?'A leitura por IA só funciona abrindo o app pelo link do Claude, e não na versão instalada fora dele.':e&&e.code==='not_granted'?'Você não autorizou o uso do Claude. Toque em Ler com IA de novo e permita.':'Não consegui ler agora. Tente de novo em instantes.'}},
+ scansave:()=>{let c=0;SC.forEach((x,i)=>{if(!$('#r_k'+i).checked)return;const amount=num($('#r_a'+i).value);if(!(amount>0))return;S.tx.push({id:uid(),type:x.type,amount,desc:$('#r_d'+i).value.trim()||x.cat,cat:$('#r_c'+i).value,acc:$('#r_acc').value,date:$('#r_t'+i).value||td(),paid:$('#r_p').checked});c++});save();close();render();toast(c+' lançamento(s) salvo(s)')},
+ close,add:()=>sheet(form()),
+ edit:id=>{const t=S.tx.find(x=>x.id===id);t&&sheet(form(t))},
+ tog:id=>{const t=S.tx.find(x=>x.id===id);t.paid=!t.paid;save();render()},
+ flt:id=>{flt=id;render()},
+ savetx:id=>{
+  const amount=num($('#f_amt').value),type=document.querySelector('[name=type]:checked').value;
+  if(!(amount>0))return toast('Informe um valor maior que zero');
+  const cat=$('#f_cat').value,desc=$('#f_desc').value.trim()||cat,acc=$('#f_acc').value,date=$('#f_date').value||td(),paid=$('#f_paid').checked;
+  if(id){Object.assign(S.tx.find(x=>x.id===id),{type,amount,desc,cat,acc,date,paid})}
+  else{const rep=$('#f_rep').value,n=rep==='u'?1:rep==='m'?12:Math.max(2,parseInt($('#f_n').value)||2);
+   for(let i=0;i<n;i++)S.tx.push({id:uid(),type,amount,cat,acc,date:addM(date,i),paid:i===0?paid:false,desc:rep==='p'?`${desc} (${i+1}/${n})`:desc})}
+  save();close();render();toast('Lançamento salvo')},
+ deltx:id=>{S.tx=S.tx.filter(x=>x.id!==id);save();close();render();toast('Lançamento excluído')},
+ newacc:()=>ask('Nova conta',[['a_n','Nome (ex.: Nubank, Dinheiro)'],['a_i','Saldo inicial','', 'number']],'saveacc'),
+ editacc:id=>{const a=S.acc.find(x=>x.id===id);ask('Editar conta',[['a_n','Nome',a.name],['a_i','Saldo inicial',a.ini,'number']],'saveacc',id,`<button class="btn ghost danger" data-a="delacc" data-id="${id}">Excluir</button>`)},
+ saveacc:id=>{const name=$('#a_n').value.trim();if(!name)return toast('Dê um nome à conta');const ini=num($('#a_i').value)||0;
+  if(id)Object.assign(S.acc.find(x=>x.id===id),{name,ini});else S.acc.push({id:uid(),name,ini});save();close();render()},
+ delacc:id=>{if(S.acc.length<2)return toast('Mantenha pelo menos uma conta');if(S.tx.some(t=>t.acc===id))return toast('Esta conta tem lançamentos');S.acc=S.acc.filter(a=>a.id!==id);save();close();render()},
+ newgoal:()=>ask('Nova meta',[['g_n','Nome da meta'],['g_t','Valor da meta','','number'],['g_s','Já guardado','','number']],'savegoal'),
+ savegoal:()=>{const name=$('#g_n').value.trim(),target=num($('#g_t').value);if(!name||!(target>0))return toast('Informe nome e valor da meta');S.goals.push({id:uid(),name,target,saved:num($('#g_s').value)||0});save();close();render()},
+ dep:id=>{const v=num($('#dep_'+id).value);if(!(v>0))return toast('Informe o valor');S.goals.find(g=>g.id===id).saved+=v;save();render();toast('Valor guardado')},
+ delgoal:id=>{S.goals=S.goals.filter(g=>g.id!==id);save();render()},
+ theme:id=>{S.theme=id;save();render()},
+ copy:()=>{const b=$('#bk');b.select();try{navigator.clipboard.writeText(b.value).then(()=>toast('Backup copiado'),()=>{document.execCommand('copy');toast('Backup copiado')})}catch(e){document.execCommand('copy');toast('Backup copiado')}},
+ imp:()=>{try{const j=JSON.parse($('#rs').value);if(!j.tx||!j.acc)throw 0;S=j;save();render();toast('Dados restaurados')}catch(e){toast('Backup inválido')}},
+ reset:()=>{if(!rst){rst=true;render();return}rst=false;S={acc:[{id:'a1',name:'Carteira',ini:0}],tx:[],bud:{},goals:[],theme:'auto'};save();render();toast('Dados apagados')},
+ install:()=>{if(dp){dp.prompt();dp.userChoice.finally(()=>{dp=null})}else sheet(`<h3>Instalar no celular</h3><p><b>iPhone (Safari):</b> toque em Compartilhar e depois em Adicionar à Tela de Início.</p><p><b>Android (Chrome):</b> toque no menu ⋮ e depois em Instalar app ou Adicionar à tela inicial.</p><p style="color:var(--mu);font-size:13px">Abra o link do app direto no navegador, fora do chat, para a opção aparecer.</p><div class="btns"><button class="btn" data-a="close">Entendi</button></div>`)}
+};
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;if(el.dataset.a==='close'&&e.target!==el&&!e.target.closest('.btn'))return;const f=A[el.dataset.a];f&&f(el.dataset.id)});
+document.addEventListener('input',e=>{if(e.target.id==='q'){q=e.target.value;renderList()}});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.name==='type')$('#f_cat').innerHTML=opts(cats(t.value),'');
+ if(t.id==='f_rep')$('#f_nw').hidden=t.value!=='p';
+ if(t.dataset.bud){S.bud[t.dataset.bud]=num(t.value)||0;save();render()}});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+render();
+</script>
+</body>
+</html>
